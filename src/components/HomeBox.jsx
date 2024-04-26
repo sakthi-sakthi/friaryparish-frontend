@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Modal } from 'react-bootstrap';
-
+import './css/homebox.css';
+import { Link } from 'react-router-dom';
 function HomeBox() {
     const [news, setNews] = useState([]);
     const [massSchedule, setMassSchedule] = useState([]);
@@ -22,7 +23,7 @@ function HomeBox() {
                   params: {
                     part: "snippet",
                     channelId: "UCqcc8CPKKO-UMlprD5iT4_Q",
-                    maxResults: 7,
+                    maxResults: 4,
                     order: "date",
                     key: "AIzaSyAau7RTNPjHfPwlewNWCcyXrssH4VMEI0w"
                   }
@@ -87,7 +88,7 @@ function HomeBox() {
     };
 
     return (
-        <Container fluid>
+        <Container fluid >
             <Row>
                 <Col xs={12} sm={4}>
                     <div className="news-container section-box-data">
@@ -95,35 +96,44 @@ function HomeBox() {
                         <div className="home-box-icon">
                             <i aria-hidden="true" className="fas fa-calendar"></i>
                         </div>
-                        {loading ? (
-                            <p><center>Loading...</center></p>
-                        ) : (
-                            <div className="news-list d-flex flex-column align-items-center">
-                                {news && news.length > 0 ? (
-                                    news?.map((item) => (
-                                        <div className="news-item" key={item.id}>
-                                            <center>
-                                                {item.image && (
-                                                    <img
-                                                        src={item.image}
-                                                        className="news-image"
-                                                        alt={item.name}
-                                                        onClick={() => handleImageClick(item)}
-                                                    />
-                                                )}
-                                                <a href={item.link} className="news-link">
-                                                    <h3 className="news-name">{item.name}</h3>
-                                                </a>
-                                                <span className="news-date">{item.date}</span>
-                                                <div dangerouslySetInnerHTML={{ __html: item.description }} />
-                                            </center>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <p><center>No news available</center></p>
-                                )}
-                            </div>
-                        )}
+                        {news ? (
+              news.length > 0 ? (
+                <>
+                  {news.slice(0, 3).map((data) => (
+                    <div className="card-media" key={data?.id}>
+                      <div className="card-media-object-container">
+                        <div
+                          className="card-media-object"
+                          style={{
+                            backgroundImage: `url(${data?.image})`,
+                          }}
+                          onClick={() => handleImageClick(data)}
+                        />
+                      </div>
+                      <div className="card-media-body">
+                        <span className="card-media-body-heading">
+                          <Link to={`/news?newsid=${data?.id}`}>
+                            {data?.name}
+                          </Link>
+                        </span>
+                        <div className="card-media-body-top">
+                          <span className="subtle"><i className="fa fa-calendar" /> {data?.date}</span>
+                        </div>
+                        <div dangerouslySetInnerHTML={{ __html: data?.description }} />
+                        {/*     <Link to={`/news?newsid=${data?.id}`} className="read-more-btn"> Read More <i className="flaticon-next" /></Link> */}
+                      </div>
+                    </div>
+                  ))}
+                  {news.length >= 3 && (
+                    <center><Link to="/news" className="view-more-btn">View More</Link></center>
+                  )}
+                </>
+              ) : (
+                <div style={{ color: "black" }}><b>No News available</b></div>
+              )
+            ) : (
+              <div>Loading...</div>
+            )}       
                     </div>
                     {selectedNews && (
                         <Modal show={selectedNews !== null} onHide={handleCloseModal} centered>
@@ -170,25 +180,29 @@ function HomeBox() {
                                                                     {index === language.mass_detail.length - 1 ? '.' : ','}&nbsp;
                                                                 </React.Fragment>
                                                             )}
-                                                            <hr className="separator" />
+                                                            
+                                                            {/* <hr className="separator" /> */}
                                                         </>
                                                     }
+                                                    
                                                 </div>
                                             )}
+                                            
                                         </div>
                                     )}
                                 </div>
-                                <br />
-                                <center>
-                                    <button className="btn btn-primary" id='more-button'>View More</button>
-                                </center>
+                                 {massSchedule ? 
+                                
+                                    <button className="btn btn-primary text-right" id='more-button'>View More</button>
+                                   
+                                    : ''}
+                                
                                 <br />
                                 <div className="mass-schedule-container align-items-justify">
-                                    <h3 className="schedule-title"><i aria-hidden="true" className="far fa-clock"></i> Parish Office Timings</h3>
+                                    <h3 className="home-box-title"> Parish Office Timings</h3>
                                     <div className='mass-new-time'>
                                         <span className="schedule">Weekdays : 09:30am , 01:00pm , 03:30pm </span>
                                         <br />
-                                        <hr className="separator" />
                                         <span className="schedule">Sundays : 08:00am , 12:00 noon </span>
                                     </div>
                                 </div>
@@ -208,7 +222,7 @@ function HomeBox() {
                                     <iframe
                                         title="Main Top Video"
                                         width="100%"
-                                        height="300px"
+                                        height="200px"
                                         src={`https://www.youtube.com/embed/${videos[0].id.videoId}`}
                                         frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -229,6 +243,7 @@ function HomeBox() {
                                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                 allowFullScreen
                                             ></iframe>
+                                            <p style={{fontSize: '12px'}}>{video.snippet.title}</p>
                                         </div>
                                     ))}
                                 </div>

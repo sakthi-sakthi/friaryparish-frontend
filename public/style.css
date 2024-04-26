@@ -4429,7 +4429,7 @@ a.tech:hover {
 
 .section-box-data {
   background-color: #fff;
-  height: 800px;
+  height: 650px;
 }
 .home-box-title{
   color: #4691CE;
@@ -4437,19 +4437,13 @@ a.tech:hover {
   text-align: center;
   font-family: DINPro !important;
   padding: 10px;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-  margin-top: 10px;
 }
 .home-box-icon{
   color: #4691CE;
-  font-size: 35px;
+  font-size: 25px;
   text-align: center;
   font-family: DINPro !important;
-  padding: 10px;
   letter-spacing: 2px;
-  margin-bottom: 10px;
-  margin-top: 10px;
   border-radius: 50px;
 }
 .news-image{
@@ -4489,22 +4483,22 @@ a.tech:hover {
 }
 
 .schedule-title {
-  margin-left: 52px;
+  margin-left: 30px;
   color: #4691CE;
-  font-size: 22px;
+  font-size: 16px;
   font-family: DINPro !important;
   letter-spacing: 1px;
 }
 
 .schedule {
   color: #1d1d1d;
-  font-size: 16px;
+  font-size: 14px;
   font-family: DINPro !important;
 }
 
 .mass-new-time{
   margin-left: 50px;
-  padding: 7px;
+  padding: 2px;
 }
 
 /* Additional styles for smaller screens */
@@ -4541,12 +4535,15 @@ a.tech:hover {
 
 #more-button{
   background-color: #4691CE;
-  font-size: 18px;
+  font-size: 10px;
   font-family: DINPro !important;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
   text-decoration: none;
   border-radius: 10px;
   border: none;
+  float: right;
+  padding: 7px;
+    margin: 7px;
 }
 #list-inline-data{
   font-size: 15px;

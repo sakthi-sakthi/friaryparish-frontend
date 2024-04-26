@@ -68,15 +68,15 @@ function Home() {
   }
 
   return (
-    <>
+    <div style={{ backgroundColor: "#CEE9F0" }}>
       <Header menudata={homedata?.headermenudata} />
       <Slider sliderdata={homedata?.SlidesData} />
       <Scrollbar />
       <br/>
-      <HomeBox />
+      <HomeBox  />
       <br/>
       <Footer />
-    </>
+    </div>
   );
 }
 
