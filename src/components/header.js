@@ -84,7 +84,7 @@ function Header() {
                       className="__cf_email__"
                       style={{ marginLeft: "0.5rem" }}
                     >
-                    friaryparish@gmail.com
+                      friaryparish@gmail.com
                     </span>
                   </a>
                 </div>
@@ -174,12 +174,15 @@ function Header() {
               <ul className="main-navigation" style={{ marginTop: "-5px" }}>
                 {menuData.map((item) => (
                   <li key={item.id}>
-                    <NavLink
-                      to={item.url}
-                      className={item.url === url ? "active" : ""}
-                    >
-                      {item.label}
-                    </NavLink>
+                    {item.id === 7 ? ( 
+                      <a href={item.url} target="_blank" rel="noreferrer" className={item.url === url ? "active" : ""}>
+                        {item.label}
+                      </a>
+                    ) : (
+                      <NavLink to={item.url} className={item.url === url ? "active" : ""}>
+                        {item.label}
+                      </NavLink>
+                    )}
                     {item.children && (
                       <ul>
                         {item.children.map((child) => (
@@ -189,9 +192,7 @@ function Header() {
                               <ul>
                                 {child.subchildren.map((subchild) => (
                                   <li key={subchild.id}>
-                                    <NavLink to={`${subchild.url}`}>
-                                      {subchild.label}
-                                    </NavLink>
+                                    <NavLink to={`${subchild.url}`}>{subchild.label}</NavLink>
                                   </li>
                                 ))}
                               </ul>
@@ -225,9 +226,8 @@ function Header() {
           <i className="fa fa-bars"></i>
         </button>
         <div
-          className={`offcanvas offcanvas-start ${
-            isMobileMenuOpen ? "show" : " "
-          }`}
+          className={`offcanvas offcanvas-start ${isMobileMenuOpen ? "show" : " "
+            }`}
           tabIndex="-1"
           data-bs-backdrop={false} // Toggle backdrop based on state
           id="offcanvasExample"
@@ -250,9 +250,8 @@ function Header() {
               {menuData.map((item) => (
                 <li
                   key={item.id}
-                  className={`nav-item dropdown ${
-                    openSubMenu === item.id ? "active" : ""
-                  }`}
+                  className={`nav-item dropdown ${openSubMenu === item.id ? "active" : ""
+                    }`}
                 >
                   {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <a

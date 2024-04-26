@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { ApiUrl } from '../../components/API/Api';
 
 
-const History = () => {
+const Association = () => {
   const location = useLocation();
   const url = location.pathname;
   const [id, setId] = useState();
@@ -13,9 +13,25 @@ const History = () => {
 
   useEffect(() => {
     const path = {
-      '/about-us': 1,
-      '/history': 2,
-      '/parish-pastoral-council': 3,
+      '/lector-ministry': 4,
+      '/altar-service': 5,
+      '/liturgy-committee': 6,
+      '/music-ministry' : 7,
+      '/prayer-group': 8,
+      '/divine-spark': 9,
+      '/kristanjali-news': 10,
+      '/legion-mary' : 11,
+      '/assisi-malar' : 12,
+      '/secular-order' : 13,
+      '/vincent-de-paul' : 14,
+      '/prison-ministry' : 15,
+      '/family-cell' : 16,
+      '/mother-theresa' : 17,
+      '/jesus-youth' : 18,
+      '/living-clay' : 19,
+      '/education-aid' : 20,
+      '/family-welfare' : 21,
+      '/sunday-school' : 22
     };
     setId(path[url] ? path[url] : url);
   }, [url]);
@@ -60,6 +76,7 @@ const History = () => {
           <div className="col-lg-12">
             {filterdata?.map((item) => (
               <div key={item.id} className="custom-card-body">
+                <h1 style={{ textAlign: 'center' }}>{item.title}</h1>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: `${item.content}`,
@@ -74,4 +91,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default Association;

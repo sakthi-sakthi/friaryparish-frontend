@@ -1,42 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { ApiUrl } from "./API/Api";
+import React from "react";
 
-function Scrollbar() {
-  const [isScrollingAllowed, setIsScrollingAllowed] = useState(true);
-  const [newsContent, setNewsContent] = useState([]);
-
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const response = await axios.get(`${ApiUrl}/resource/category/9`);
-        const allNews = response?.data?.data || [];
-
-        if (allNews.length > 0) {
-          setNewsContent(allNews);
-        } else {
-          setNewsContent([
-            {
-              title: "No Flash News available",
-            },
-          ]);
-        }
-      } catch (error) {
-        console.error("Error fetching news:", error);
-      }
-    };
-
-    fetchNews();
-  }, []);
-
-  const stopScroll = () => {
-    setIsScrollingAllowed(false);
-  };
-
-  const allowScroll = () => {
-    setIsScrollingAllowed(true);
-  };
-
+function Scrollbar({ newsdata }) {
   return (
     <>
       <div className="scrollbar">
@@ -48,27 +12,25 @@ function Scrollbar() {
             <div className="col-8 col-lg-10 d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
               <div className="marqueenews">
                 <div className="marquee">
-                  <p
-                    onMouseEnter={stopScroll}
-                    onMouseLeave={allowScroll}
-                    onTouchStart={stopScroll}
-                    onTouchEnd={allowScroll}
-                    style={{ overflow: isScrollingAllowed ? "" : "hidden" }}
-                  >
-                    {newsContent?.map((newsItem, index) => (
-                      <span key={index}>
-                        <img
-                          src="images/logos/output-onlinegiftools.gif"
-                          style={{
-                            maxWidth: "40px",
-                          }}
-                          alt=""
-                        />
-                        <span style={{ cursor: "pointer" }}>
-                          {newsItem?.title}
+                  <p>
+                    {newsdata.length === 0 ? (
+                      <span>No flash news available</span>
+                    ) : (
+                      newsdata.map((newsItem, index) => (
+                        <span key={index}>
+                          <img
+                            src={newsItem.media_url}
+                            style={{
+                              maxWidth: "40px",
+                            }}
+                            alt=""
+                          />
+                          <span style={{ cursor: "pointer" }}>
+                            {newsItem.title}
+                          </span>
                         </span>
-                      </span>
-                    ))}
+                      ))
+                    )}
                   </p>
                 </div>
               </div>
