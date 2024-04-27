@@ -34,6 +34,7 @@ const MainLayout = () => {
       "/education-aid" : "Education Aid",
       "/family-welfare" : "Family Welfare",
       "/sunday-school" : "Sunday School",
+      '/mass-booking': "Mass Booking",
     };
     setPageTitle(path[url] ? path[url] : url);
   }, [url]);

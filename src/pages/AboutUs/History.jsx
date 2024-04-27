@@ -16,6 +16,7 @@ const History = () => {
       '/about-us': 1,
       '/history': 2,
       '/parish-pastoral-council': 3,
+      '/mass-booking': 23,
     };
     setId(path[url] ? path[url] : url);
   }, [url]);
