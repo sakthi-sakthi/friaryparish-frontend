@@ -21,6 +21,8 @@ function App() {
           <Route path="parish-clergy" element={<Clergy />} />
           <Route path="parish-pastoral-council" element={<History />} />
           <Route path="mass-booking" element={<History />} />
+          <Route path="voice" element={<History />} />
+          <Route path="associations" element={<History />} />
           <Route path="news-letters" element={<NewsLetter />} />
           {/* Association section routing */}
           <Route path="lector-ministry" element={<Association />} />

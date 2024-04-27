@@ -17,6 +17,8 @@ const History = () => {
       '/history': 2,
       '/parish-pastoral-council': 3,
       '/mass-booking': 23,
+      "/voice": 0,
+      '/associations': 0,
     };
     setId(path[url] ? path[url] : url);
   }, [url]);
@@ -44,16 +46,17 @@ const History = () => {
     return <div className="text-center mt-5">loading...</div>;
   }
 
-  if (!data || data.length === 0) {
+ 
+
+  const filterdata = data.filter((item) => item.id === id);
+ 
+  if (!filterdata || filterdata.length === 0) {
     return (
       <div className="text-center mt-5">
         <b>No Data Available</b>
       </div>
     );
   }
-
-  const filterdata = data.filter((item) => item.id === id);
-
   return (
     <>
       <div className="container subpage">
